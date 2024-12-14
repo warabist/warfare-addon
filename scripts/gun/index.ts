@@ -1,9 +1,9 @@
-import { guns } from './guns';
+import { Gun } from './Gun';
 
 export class GunSystem {
-  private guns;
+  private guns: Gun[];
 
-  constructor() {
+  constructor(guns: Gun[]) {
     this.guns = guns;
   }
 
