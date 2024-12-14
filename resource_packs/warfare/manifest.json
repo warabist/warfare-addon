@@ -1,0 +1,23 @@
+{
+  "format_version": 2,
+  "header": {
+    "name": "warfare-v1.0.0",
+    "description": "by motiwarabist",
+    "uuid": "01f8915c-4dd8-4767-9543-9e7bf7bfb297",
+    "version": [1, 0, 0],
+    "min_engine_version": [1, 21, 50]
+  },
+  "modules": [
+    {
+      "type": "resources",
+      "uuid": "ef92ecf8-6e8e-42d7-9617-a06082e42b09",
+      "version": [1, 0, 0]
+    }
+  ],
+  "dependencies": [
+    {
+      "uuid": "37740910-d43d-483e-8f5b-9412b4a77be2",
+      "version": [1, 0, 0]
+    }
+  ]
+}
