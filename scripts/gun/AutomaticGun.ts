@@ -11,11 +11,12 @@ import { AutomaticGunData } from './interfaces/AutomaticGunData';
 
 export abstract class AutomaticGun extends Gun {
   private data: AutomaticGunData;
-  private shootingIntervalIdMap: Map<string, number> = new Map();
+  private shootingIntervalIdMap: Map<string, number>;
 
   constructor(data: AutomaticGunData) {
     super();
     this.data = data;
+    this.shootingIntervalIdMap = new Map();
   }
 
   protected override onItemStartUse(eventData: ItemStartUseAfterEvent): void {
