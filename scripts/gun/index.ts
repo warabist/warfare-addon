@@ -1,14 +1,18 @@
 import { guns } from './guns';
 
 export class GunSystem {
-  constructor() {}
+  private guns;
+
+  constructor() {
+    this.guns = guns;
+  }
 
   start(): void {
     this.registerGuns();
   }
 
   private registerGuns(): void {
-    guns.forEach((gun) => {
+    this.guns.forEach((gun) => {
       gun.register();
     });
   }
