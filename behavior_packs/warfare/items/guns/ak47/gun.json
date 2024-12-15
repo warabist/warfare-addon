@@ -9,6 +9,9 @@
     },
     "components": {
       "minecraft:icon": "ak47",
+      "minecraft:display_name": {
+        "value": "warfare.item.ak47"
+      },
       "minecraft:food": {
         "can_always_eat": true,
         "nutrition": 0,

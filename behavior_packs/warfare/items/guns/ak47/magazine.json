@@ -9,6 +9,9 @@
     },
     "components": {
       "minecraft:icon": "ak47_magazine",
+      "minecraft:display_name": {
+        "value": "warfare.item.ak47_magazine"
+      },
       "minecraft:max_stack_size": 16
     }
   }

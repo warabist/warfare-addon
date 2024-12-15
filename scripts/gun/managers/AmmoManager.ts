@@ -6,6 +6,7 @@ import {
   Player,
   world,
 } from '@minecraft/server';
+import { EmptyGunReplacer } from '../utils/EmptyGunReplacer';
 
 export class AmmoManager {
   private gun: ItemStack;
@@ -33,20 +34,8 @@ export class AmmoManager {
   removeAmmoCount(amount: number): void {
     const newCount = this.getAmmoCount() - amount;
     this.setAmmoCount(newCount);
-    if (newCount === 0) this.replaceWithEmptyAmmoGun();
-  }
-
-  private replaceWithEmptyAmmoGun(): void {
-    const equippable = this.owner.getComponent(
-      EntityComponentTypes.Equippable
-    ) as EntityEquippableComponent;
-    const emptyAmmoGun = new ItemStack(this.gun.typeId + '_empty_ammo', 1); //例: warfare:ak47_empty_ammo
-    //this.itemStackのデータをemptyAmmoGunに移植
-    emptyAmmoGun.nameTag = this.gun.nameTag;
-    for (const id of this.gun.getDynamicPropertyIds()) {
-      emptyAmmoGun.setDynamicProperty(id, this.gun.getDynamicProperty(id));
+    if (newCount === 0) {
+      EmptyGunReplacer.replace(this.owner, this.gun);
     }
-    emptyAmmoGun.setLore(this.gun.getLore());
-    equippable.setEquipment(EquipmentSlot.Mainhand, emptyAmmoGun);
   }
 }

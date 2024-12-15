@@ -2,13 +2,16 @@
   "format_version": "1.21.50",
   "minecraft:item": {
     "description": {
-      "identifier": "warfare:ak47_empty_ammo",
+      "identifier": "warfare:ak47_empty",
       "menu_category": {
         "category": "equipment"
       }
     },
     "components": {
       "minecraft:icon": "ak47",
+      "minecraft:display_name": {
+        "value": "warfare.item.ak47"
+      },
       "minecraft:food": {
         "can_always_eat": true,
         "nutrition": 0,
