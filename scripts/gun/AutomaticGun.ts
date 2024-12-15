@@ -35,7 +35,7 @@ export abstract class AutomaticGun extends Gun {
   }
 
   protected startShooting(ammoManager: AmmoManager, owner: Player): void {
-    this.shoot(ammoManager, owner);
+    this.shoot(ammoManager, owner); //shootingが始まった瞬間にshootする これが無いと一番初めのshootはrate後になる
     const shootingIntervalId = system.runInterval(() => {
       this.shoot(ammoManager, owner);
     }, this.data.rate);
