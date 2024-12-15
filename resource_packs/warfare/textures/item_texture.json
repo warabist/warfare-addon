@@ -3,7 +3,10 @@
   "texture_name": "atlas.items",
   "texture_data": {
     "ak47": {
-      "textures": "textures/warfare/items/ak47"
+      "textures": "textures/warfare/items/ak47/gun"
+    },
+    "ak47_magazine": {
+      "textures": "textures/warfare/items/ak47/magazine"
     }
   }
 }

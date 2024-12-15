@@ -8,9 +8,7 @@
       }
     },
     "components": {
-      "minecraft:display_name": {
-        "value": "warfare.item.ak47"
-      },
+      "minecraft:icon": "ak47",
       "minecraft:food": {
         "can_always_eat": true,
         "nutrition": 0,
@@ -20,7 +18,6 @@
         "use_duration": 10000000,
         "movement_modifier": 0.8
       },
-      "minecraft:icon": "ak47",
       "minecraft:max_stack_size": 1,
       "minecraft:tags": {
         "tags": ["warfare_gun"]

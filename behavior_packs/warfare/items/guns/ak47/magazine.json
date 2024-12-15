@@ -1,0 +1,14 @@
+{
+  "format_version": "1.21.50",
+  "minecraft:item": {
+    "description": {
+      "identifier": "warfare:ak47_magazine",
+      "menu_category": {
+        "category": "equipment"
+      }
+    },
+    "components": {
+      "minecraft:icon": "ak47_magazine"
+    }
+  }
+}
