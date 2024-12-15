@@ -1,10 +1,5 @@
-import {
-  EntityApplyDamageByProjectileOptions,
-  ProjectileHitEntityAfterEvent,
-  world,
-} from '@minecraft/server';
+import { ProjectileHitBlockAfterEvent, world } from '@minecraft/server';
 import { Gun } from './Gun';
-import { COMMON_DATA } from './constants/COMMON_DATA';
 
 export class GunSystem {
   private guns: Gun[];
@@ -19,26 +14,13 @@ export class GunSystem {
   }
 
   private initEventSubscriber(): void {
-    world.afterEvents.projectileHitEntity.subscribe((eventData) => {
-      this.onProjectileHitEntity(eventData);
+    world.afterEvents.projectileHitBlock.subscribe((eventData) => {
+      this.onProjectileHitBlock(eventData);
     });
   }
 
-  private onProjectileHitEntity(
-    eventData: ProjectileHitEntityAfterEvent
-  ): void {
-    const { projectile, source } = eventData;
-    if (projectile.typeId !== COMMON_DATA.ammoProjectile) return;
-    eventData.getEntityHit().entity?.applyDamage(
-      projectile.getProperty(
-        COMMON_DATA.ammoAdditionalDamageProperty
-      ) as number,
-      {
-        damagingProjectile: projectile,
-        damagingEntity: source,
-      } as EntityApplyDamageByProjectileOptions
-    );
-  }
+  //弾が当たった時に穴風のパーティクルを出す
+  private onProjectileHitBlock(eventData: ProjectileHitBlockAfterEvent): void {}
 
   private registerGuns(): void {
     this.guns.forEach((gun) => {

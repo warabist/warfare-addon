@@ -8,7 +8,6 @@ import { Gun } from './Gun';
 import { AmmoManager } from './managers/AmmoManager';
 import { ProjectileShooter } from './utils/ProjectileShooter';
 import { AutomaticGunData } from './interfaces/AutomaticGunData';
-import { COMMON_DATA } from './constants/COMMON_DATA';
 
 export abstract class AutomaticGun extends Gun {
   data: AutomaticGunData;
@@ -48,11 +47,7 @@ export abstract class AutomaticGun extends Gun {
       this.clearShootingInterval(owner);
       return;
     }
-    ProjectileShooter.shoot(
-      owner,
-      COMMON_DATA.ammoProjectile,
-      this.data.uncertainty
-    );
+    ProjectileShooter.shoot(owner, this.data.bulletProjectileId);
     ammoManager.removeAmmoCount(1);
   }
 

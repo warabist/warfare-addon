@@ -2,16 +2,9 @@
   "format_version": "1.21.50",
   "minecraft:entity": {
     "description": {
-      "identifier": "warfare:ammo_projectile",
+      "identifier": "warfare:ak47_bullet",
       "is_spawnable": false,
-      "is_summonable": true,
-      "properties": {
-        "warfare:additional_damage": {
-          "type": "int",
-          "default": 0,
-          "range": [0, 128]
-        }
-      }
+      "is_summonable": true
     },
 
     "component_groups": {
@@ -36,7 +29,7 @@
       "minecraft:projectile": {
         "on_hit": {
           "impact_damage": {
-            "damage": 1,
+            "damage": 8,
             "knockback": false,
             "destroy_on_hit": true,
             "power_multiplier": 1
