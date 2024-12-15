@@ -7,26 +7,10 @@
       "is_summonable": true
     },
 
-    "component_groups": {
-      "warfare:instant_despawn": {
-        "minecraft:instant_despawn": {}
-      }
-    },
-
     "components": {
-      "minecraft:collision_box": {
-        "width": 0.25,
-        "height": 0.25
-      },
-      "minecraft:timer": {
-        "time": 0.5,
-        "looping": false,
-        "time_down_event": {
-          "event": "warfare:add_instant_despawn",
-          "target": "self"
-        }
-      },
       "minecraft:projectile": {
+        "uncertainty_base": 0.3,
+        "power": 8,
         "on_hit": {
           "impact_damage": {
             "damage": 8,
@@ -42,25 +26,21 @@
           "remove_on_hit": {}
         },
         "hit_sound": "",
-        "uncertainty_base": 0.3,
-        "power": 8,
         "gravity": 0,
         "anchor": 1
       },
+      "minecraft:collision_box": {
+        "width": 0.25,
+        "height": 0.25
+      },
       "minecraft:tick_world": {},
-      "minecraft:hurt_on_condition": {
-        "damage_conditions": [
-          {
-            "filters": {
-              "test": "in_lava",
-              "subject": "self",
-              "operator": "==",
-              "value": true
-            },
-            "cause": "lava",
-            "damage_per_tick": 4
-          }
-        ]
+      "minecraft:timer": {
+        "time": 0.5,
+        "looping": false,
+        "time_down_event": {
+          "event": "warfare:add_instant_despawn",
+          "target": "self"
+        }
       },
       "minecraft:physics": {}
     },
@@ -70,6 +50,12 @@
         "add": {
           "component_groups": ["warfare:instant_despawn"]
         }
+      }
+    },
+
+    "component_groups": {
+      "warfare:instant_despawn": {
+        "minecraft:instant_despawn": {}
       }
     }
   }
