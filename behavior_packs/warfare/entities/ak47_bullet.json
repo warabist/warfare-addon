@@ -42,6 +42,7 @@
           "remove_on_hit": {}
         },
         "hit_sound": "",
+        "uncertainty_base": 0.3,
         "power": 8,
         "gravity": 0,
         "anchor": 1
