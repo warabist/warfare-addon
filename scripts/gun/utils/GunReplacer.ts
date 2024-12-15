@@ -6,8 +6,8 @@ import {
   EquipmentSlot,
 } from '@minecraft/server';
 
-export class EmptyGunReplacer {
-  static replace(owner: Player, gun: ItemStack): void {
+export class GunReplacer {
+  static replaceEmptyGun(owner: Player, gun: ItemStack): void {
     const equippable = owner.getComponent(
       EntityComponentTypes.Equippable
     ) as EntityEquippableComponent;
@@ -20,4 +20,6 @@ export class EmptyGunReplacer {
     emptyAmmoGun.setLore(gun.getLore());
     equippable.setEquipment(EquipmentSlot.Mainhand, emptyAmmoGun);
   }
+
+  static replaceLoadedGun(owner: Player, emptyGun: ItemStack) {}
 }

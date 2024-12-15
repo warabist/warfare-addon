@@ -6,7 +6,7 @@ import {
   Player,
   world,
 } from '@minecraft/server';
-import { EmptyGunReplacer } from '../utils/EmptyGunReplacer';
+import { GunReplacer } from '../utils/GunReplacer';
 
 export class AmmoManager {
   private gun: ItemStack;
@@ -35,7 +35,7 @@ export class AmmoManager {
     const newCount = this.getAmmoCount() - amount;
     this.setAmmoCount(newCount);
     if (newCount === 0) {
-      EmptyGunReplacer.replace(this.owner, this.gun);
+      GunReplacer.replaceEmptyGun(this.owner, this.gun);
     }
   }
 }
