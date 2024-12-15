@@ -6,7 +6,6 @@ import {
   Player,
   world,
 } from '@minecraft/server';
-import { COMMON_DATA } from '../constants/COMMON_DATA';
 
 export class AmmoManager {
   private gun: ItemStack;
@@ -16,7 +15,7 @@ export class AmmoManager {
   constructor(gun: ItemStack, owner: Player) {
     this.gun = gun;
     this.owner = owner;
-    this.gunId = gun.getDynamicProperty(COMMON_DATA.gunIdProperty) as string;
+    this.gunId = gun.getDynamicProperty('gunId') as string;
   }
 
   getAmmoCount(): number {
@@ -41,7 +40,7 @@ export class AmmoManager {
     const equippable = this.owner.getComponent(
       EntityComponentTypes.Equippable
     ) as EntityEquippableComponent;
-    const emptyAmmoGun = new ItemStack(this.gun.typeId + '_empty_ammo', 1);
+    const emptyAmmoGun = new ItemStack(this.gun.typeId + '_empty_ammo', 1); //例: warfare:ak47_empty_ammo
     //this.itemStackのデータをemptyAmmoGunに移植
     emptyAmmoGun.nameTag = this.gun.nameTag;
     for (const id of this.gun.getDynamicPropertyIds()) {
