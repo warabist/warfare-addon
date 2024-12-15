@@ -1,0 +1,82 @@
+{
+  "format_version": "1.21.50",
+  "minecraft:entity": {
+    "description": {
+      "identifier": "warfare:ammo_projectile",
+      "is_spawnable": false,
+      "is_summonable": true,
+      "properties": {
+        "warfare:additional_damage": {
+          "type": "int",
+          "default": 0,
+          "range": [0, 128]
+        }
+      }
+    },
+
+    "component_groups": {
+      "warfare:instant_despawn": {
+        "minecraft:instant_despawn": {}
+      }
+    },
+
+    "components": {
+      "minecraft:collision_box": {
+        "width": 0.25,
+        "height": 0.25
+      },
+      "minecraft:timer": {
+        "time": 0.5,
+        "looping": false,
+        "time_down_event": {
+          "event": "warfare:add_instant_despawn",
+          "target": "self"
+        }
+      },
+      "minecraft:projectile": {
+        "on_hit": {
+          "impact_damage": {
+            "damage": 1,
+            "knockback": false,
+            "destroy_on_hit": true,
+            "power_multiplier": 1
+          },
+          "hurt_owner": {
+            "owner_damage": 0,
+            "knockback": false,
+            "ignite": false
+          },
+          "remove_on_hit": {}
+        },
+        "hit_sound": "",
+        "power": 8,
+        "gravity": 0,
+        "anchor": 1
+      },
+      "minecraft:tick_world": {},
+      "minecraft:hurt_on_condition": {
+        "damage_conditions": [
+          {
+            "filters": {
+              "test": "in_lava",
+              "subject": "self",
+              "operator": "==",
+              "value": true
+            },
+            "cause": "lava",
+            "damage_per_tick": 4
+          }
+        ]
+      },
+      "minecraft:physics": {}
+    },
+
+    "events": {
+      "warfare:add_instant_despawn": {
+        "add": {
+          "component_groups": ["warfare:instant_despawn"]
+        }
+      }
+    }
+  }
+}

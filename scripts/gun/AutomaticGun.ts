@@ -5,12 +5,13 @@ import {
   Player,
 } from '@minecraft/server';
 import { Gun } from './Gun';
-import { AmmoManager } from './manager/AmmoManager';
-import { ProjectileShooter } from './utilities/ProjectileShooter';
+import { AmmoManager } from './managers/AmmoManager';
+import { ProjectileShooter } from './utils/ProjectileShooter';
 import { AutomaticGunData } from './interfaces/AutomaticGunData';
+import { COMMON_DATA } from './constants/COMMON_DATA';
 
 export abstract class AutomaticGun extends Gun {
-  private data: AutomaticGunData;
+  data: AutomaticGunData;
   private shootingIntervalIdMap: Map<string, number>;
 
   constructor(data: AutomaticGunData) {
@@ -21,7 +22,7 @@ export abstract class AutomaticGun extends Gun {
 
   protected override onItemStartUse(eventData: ItemStartUseAfterEvent): void {
     const { itemStack, source } = eventData;
-    if (itemStack.typeId === this.data.itemId) {
+    if (itemStack.typeId === this.data.gunItemId) {
       const ammoManager = new AmmoManager(itemStack, source);
       this.startShooting(ammoManager, source);
     }
@@ -29,7 +30,7 @@ export abstract class AutomaticGun extends Gun {
 
   protected override onItemStopUse(eventData: ItemStopUseAfterEvent): void {
     const { itemStack, source } = eventData;
-    if (itemStack?.typeId === this.data.itemId) {
+    if (itemStack?.typeId === this.data.gunItemId) {
       this.clearShootingInterval(source);
     }
   }
@@ -49,7 +50,7 @@ export abstract class AutomaticGun extends Gun {
     }
     ProjectileShooter.shoot(
       owner,
-      this.data.ammoProjectileId,
+      COMMON_DATA.ammoProjectile,
       this.data.uncertainty
     );
     ammoManager.removeAmmoCount(1);

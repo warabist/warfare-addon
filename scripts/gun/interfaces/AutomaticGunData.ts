@@ -1,10 +1,6 @@
-export interface AutomaticGunData {
-  itemId: string;
-  ammoItemId: string;
-  ammoProjectileId: string;
-  capacity: number;
+import { GunData } from './GunData';
+
+export interface AutomaticGunData extends GunData {
   rate: number;
-  zoomRatio: number;
   uncertainty: number;
-  reloadTime: number;
 }

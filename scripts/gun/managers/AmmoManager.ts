@@ -6,6 +6,7 @@ import {
   Player,
   world,
 } from '@minecraft/server';
+import { COMMON_DATA } from '../constants/COMMON_DATA';
 
 export class AmmoManager {
   private gun: ItemStack;
@@ -15,7 +16,7 @@ export class AmmoManager {
   constructor(gun: ItemStack, owner: Player) {
     this.gun = gun;
     this.owner = owner;
-    this.gunId = gun.getDynamicProperty('gunId') as string;
+    this.gunId = gun.getDynamicProperty(COMMON_DATA.gunIdProperty) as string;
   }
 
   getAmmoCount(): number {

@@ -3,8 +3,11 @@ import {
   ItemStopUseAfterEvent,
   world,
 } from '@minecraft/server';
+import { GunData } from './interfaces/GunData';
 
 export abstract class Gun {
+  abstract data: GunData;
+
   register(): void {
     this.initEventSubscriber();
   }
