@@ -2,8 +2,11 @@ import {
   ItemStartUseAfterEvent,
   ItemStopUseAfterEvent,
   world,
+  Player,
 } from '@minecraft/server';
 import { GunData } from './interfaces/GunData';
+import { AmmoManager } from './managers/AmmoManager';
+import { ProjectileShooter } from './utils/ProjectileShooter';
 
 export abstract class Gun {
   abstract data: GunData;
@@ -24,4 +27,9 @@ export abstract class Gun {
   protected onItemStartUse(eventData: ItemStartUseAfterEvent): void {}
 
   protected onItemStopUse(eventData: ItemStopUseAfterEvent): void {}
+
+  protected shoot(ammoManager: AmmoManager, owner: Player): void {
+    ProjectileShooter.shoot(owner, this.data.bulletProjectileId);
+    ammoManager.removeAmmoCount(1);
+  }
 }

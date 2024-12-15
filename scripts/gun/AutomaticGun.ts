@@ -6,7 +6,6 @@ import {
 } from '@minecraft/server';
 import { Gun } from './Gun';
 import { AmmoManager } from './managers/AmmoManager';
-import { ProjectileShooter } from './utils/ProjectileShooter';
 import { AutomaticGunData } from './interfaces/AutomaticGunData';
 
 export abstract class AutomaticGun extends Gun {
@@ -37,18 +36,13 @@ export abstract class AutomaticGun extends Gun {
   protected startShooting(ammoManager: AmmoManager, owner: Player): void {
     this.shoot(ammoManager, owner); //shootingが始まった瞬間にshootする これが無いと一番初めのshootはrate後になる
     const shootingIntervalId = system.runInterval(() => {
+      if (!owner.isValid() || ammoManager.getAmmoCount() === 0) {
+        this.clearShootingInterval(owner);
+        return;
+      }
       this.shoot(ammoManager, owner);
     }, this.data.rate);
     this.shootingIntervalIdMap.set(owner.id, shootingIntervalId);
-  }
-
-  protected shoot(ammoManager: AmmoManager, owner: Player): void {
-    if (!owner.isValid() || ammoManager.getAmmoCount() === 0) {
-      this.clearShootingInterval(owner);
-      return;
-    }
-    ProjectileShooter.shoot(owner, this.data.bulletProjectileId);
-    ammoManager.removeAmmoCount(1);
   }
 
   protected clearShootingInterval(owner: Player): void {
