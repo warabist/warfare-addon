@@ -20,9 +20,15 @@ export abstract class AutomaticGun extends Gun {
 
   protected override onItemStartUse(eventData: ItemStartUseAfterEvent): void {
     const { itemStack, source } = eventData;
-    if (itemStack.typeId === this.data.gunItemId) {
-      const ammoManager = new AmmoManager(itemStack, source);
-      this.startShooting(ammoManager, source);
+    const ammoManager = new AmmoManager(itemStack, source);
+    switch (itemStack.typeId) {
+      case this.data.gunItemId: {
+        this.startShooting(ammoManager, source);
+        break;
+      }
+      case this.data.emptyGunItemId: {
+        break;
+      }
     }
   }
 

@@ -4,6 +4,7 @@ export class AK47 extends AutomaticGun {
   constructor() {
     super({
       gunItemId: 'warfare:ak47',
+      emptyGunItemId: 'warfare:ak47_empty',
       ammoItemId: 'warfare:ak47_magagine',
       bulletProjectileId: 'warfare:ak47_bullet',
       capacity: 30,

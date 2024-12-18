@@ -7,19 +7,23 @@ import {
 } from '@minecraft/server';
 
 export class GunReplacer {
-  static replaceEmptyGun(owner: Player, gun: ItemStack): void {
+  static replaceEmptyGun(
+    owner: Player,
+    gunItem: ItemStack,
+    emptyGunItemId: string
+  ): void {
     const equippable = owner.getComponent(
       EntityComponentTypes.Equippable
     ) as EntityEquippableComponent;
-    const emptyAmmoGun = new ItemStack(gun.typeId + '_empty', 1); //例: warfare:ak47_empty
+    const emptyGunItem = new ItemStack(emptyGunItemId, 1);
     //this.itemStackのデータをemptyAmmoGunに移植
-    emptyAmmoGun.nameTag = gun.nameTag;
-    for (const id of gun.getDynamicPropertyIds()) {
-      emptyAmmoGun.setDynamicProperty(id, gun.getDynamicProperty(id));
+    emptyGunItem.nameTag = gunItem.nameTag;
+    for (const id of gunItem.getDynamicPropertyIds()) {
+      emptyGunItem.setDynamicProperty(id, gunItem.getDynamicProperty(id));
     }
-    emptyAmmoGun.setLore(gun.getLore());
-    equippable.setEquipment(EquipmentSlot.Mainhand, emptyAmmoGun);
+    emptyGunItem.setLore(gunItem.getLore());
+    equippable.setEquipment(EquipmentSlot.Mainhand, emptyGunItem);
   }
 
-  static replaceLoadedGun(owner: Player, emptyGun: ItemStack) {}
+  static replaceLoadedGun(owner: Player, emptyGunItem: ItemStack) {}
 }

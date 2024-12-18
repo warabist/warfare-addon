@@ -30,6 +30,6 @@ export abstract class Gun {
 
   protected shoot(ammoManager: AmmoManager, owner: Player): void {
     ProjectileShooter.shoot(owner, this.data.bulletProjectileId);
-    ammoManager.removeAmmoCount(1);
+    ammoManager.removeAmmoCount(1, this.data.emptyGunItemId);
   }
 }

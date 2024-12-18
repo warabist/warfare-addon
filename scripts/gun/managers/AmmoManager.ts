@@ -1,22 +1,15 @@
-import {
-  EntityComponentTypes,
-  EntityEquippableComponent,
-  EquipmentSlot,
-  ItemStack,
-  Player,
-  world,
-} from '@minecraft/server';
+import { ItemStack, Player, world } from '@minecraft/server';
 import { GunReplacer } from '../utils/GunReplacer';
 
 export class AmmoManager {
-  private gun: ItemStack;
+  private gunItem: ItemStack;
   private owner: Player;
   private gunId: string;
 
-  constructor(gun: ItemStack, owner: Player) {
-    this.gun = gun;
+  constructor(gunItem: ItemStack, owner: Player) {
+    this.gunItem = gunItem;
     this.owner = owner;
-    this.gunId = gun.getDynamicProperty('gunId') as string;
+    this.gunId = gunItem.getDynamicProperty('gunId') as string;
   }
 
   getAmmoCount(): number {
@@ -31,11 +24,11 @@ export class AmmoManager {
     this.setAmmoCount(this.getAmmoCount() + amount);
   }
 
-  removeAmmoCount(amount: number): void {
+  removeAmmoCount(amount: number, emptyGunItemId: string): void {
     const newCount = this.getAmmoCount() - amount;
     this.setAmmoCount(newCount);
     if (newCount === 0) {
-      GunReplacer.replaceEmptyGun(this.owner, this.gun);
+      GunReplacer.replaceEmptyGun(this.owner, this.gunItem, emptyGunItemId);
     }
   }
 }
