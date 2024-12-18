@@ -29,7 +29,10 @@ export abstract class Gun {
   protected onItemStopUse(eventData: ItemStopUseAfterEvent): void {}
 
   protected shoot(ammoManager: AmmoManager, owner: Player): void {
-    ProjectileShooter.shoot(owner, this.data.bulletProjectileId);
+    ProjectileShooter.shoot(owner, this.data.bulletProjectileId, {
+      power: this.data.power,
+      uncertainty: this.data.uncertainty,
+    });
     ammoManager.removeAmmoCount(1, this.data.emptyGunItemId);
   }
 }

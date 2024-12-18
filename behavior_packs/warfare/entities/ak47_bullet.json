@@ -9,8 +9,6 @@
 
     "components": {
       "minecraft:projectile": {
-        "uncertainty_base": 0.3,
-        "power": 8,
         "on_hit": {
           "impact_damage": {
             "damage": 8,
@@ -22,10 +20,8 @@
             "owner_damage": 0,
             "knockback": false,
             "ignite": false
-          },
-          "remove_on_hit": {}
+          }
         },
-        "hit_sound": "",
         "gravity": 0,
         "anchor": 1
       },
@@ -42,7 +38,15 @@
           "target": "self"
         }
       },
-      "minecraft:physics": {}
+      "minecraft:physics": {},
+      "minecraft:damage_sensor": {
+        "triggers": [
+          {
+            "cause": "all",
+            "deals_damage": "no"
+          }
+        ]
+      }
     },
 
     "events": {
