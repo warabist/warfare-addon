@@ -9,6 +9,7 @@
 
     "components": {
       "minecraft:projectile": {
+        "uncertainty_base": 1,
         "on_hit": {
           "impact_damage": {
             "damage": 8,
