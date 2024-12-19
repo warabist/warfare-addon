@@ -6,7 +6,7 @@ import {
 } from '@minecraft/server';
 import { GunData } from './interfaces/GunData';
 import { AmmoManager } from './managers/AmmoManager';
-import { ProjectileShooter } from './utils/ProjectileShooter';
+import { ProjectileShooter } from '../utils/ProjectileShooter';
 
 export abstract class Gun {
   abstract data: GunData;
@@ -35,4 +35,6 @@ export abstract class Gun {
     });
     ammoManager.removeAmmoCount(1, this.data.emptyGunItemId);
   }
+
+  protected reload(ammoManager: AmmoManager, owner: Player) {}
 }
