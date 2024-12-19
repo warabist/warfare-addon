@@ -27,6 +27,7 @@ export abstract class AutomaticGun extends Gun {
         break;
       }
       case this.data.emptyGunItemId: {
+        this.reload(ammoManager, source);
         break;
       }
     }
