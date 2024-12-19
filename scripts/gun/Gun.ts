@@ -7,6 +7,7 @@ import {
 import { GunData } from './interfaces/GunData';
 import { AmmoManager } from './managers/AmmoManager';
 import { ProjectileShooter } from '../utils/ProjectileShooter';
+import { PlayerUtils } from '../utils/PlayerUtils';
 
 export abstract class Gun {
   abstract data: GunData;
@@ -36,5 +37,8 @@ export abstract class Gun {
     ammoManager.removeAmmoCount(1, this.data.emptyGunItemId);
   }
 
-  protected reload(ammoManager: AmmoManager, owner: Player) {}
+  protected reload(ammoManager: AmmoManager, owner: Player) {
+    if (!PlayerUtils.hasItem(owner, this.data.ammoItemId)) return;
+    ammoManager.setAmmoCount(this.data.capacity);
+  }
 }
